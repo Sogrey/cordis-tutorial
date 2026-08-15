@@ -1,14 +1,3 @@
----
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: 'fa6e63d7-6ec5-40a7-ba08-28fc58378160'
-  PropagateID: 'fa6e63d7-6ec5-40a7-ba08-28fc58378160'
-  ReservedCode1: 'de9083ea-defb-48c4-8c17-f3563b33e537'
-  ReservedCode2: 'de9083ea-defb-48c4-8c17-f3563b33e537'
----
-
 # Cordis 入门学习程序
 
 9 步渐进式实践，从零掌握 Cordis 插件框架的核心概念。
@@ -270,6 +259,10 @@ cmd /c mklink /J node_modules\@deepseek-ai\cordis-plugin-logger-console vendor\l
 
 > **注意**：`pnpm install` 可能会覆盖这些 junction 链接。如果重新运行 `pnpm install` 后教程报 `ERR_MODULE_NOT_FOUND`，请重新创建链接。
 
+## 独立化方案对比分析
+
+本教程支持双轨制（Harness 模式 + npm 模式），背后的方案评估详见 [independence-analysis.md](./independence-analysis.md)。该文档对比了五种独立化方案（A 保持现状 / B 拷贝 lib / C 拷贝 src+tsc / D 打包 / E npm cordis），最终推荐 A+E 双轨制。
+
 ## 参考资源
 
 - [Cordis GitHub](https://github.com/cordiverse/cordis)
@@ -278,4 +271,3 @@ cmd /c mklink /J node_modules\@deepseek-ai\cordis-plugin-logger-console vendor\l
 - [Koishi 官网](https://koishi.chat/zh-CN/)
 - [DeepSeek Harness GitHub](https://github.com/deepseek-ai/deepseek-harness)
 
-> AI生成
