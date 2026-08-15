@@ -11,7 +11,7 @@
 //   needs-timer is PENDING — a required service is missing
 //   [diagnose] all plugins are active（如果 timer 插件已安装）
 //
-// 尝试在 cordis.yml 中添加 timer 插件后重新运行
+// 尝试在 @deepseek-ai/cordis.yml 中添加 timer 插件后重新运行
 // ============================================================
 
 import type { Context } from '@deepseek-ai/cordis'

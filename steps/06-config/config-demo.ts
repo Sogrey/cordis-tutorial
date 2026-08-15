@@ -11,7 +11,7 @@
 //   Hello, alpha!
 //   Hello, beta!
 //
-// 尝试修改 cordis.yml 中的 config，观察输出变化。
+// 尝试修改 @deepseek-ai/cordis.yml 中的 config，观察输出变化。
 // 传入无效配置（如 targets: 'not-an-array'）会触发 ValidationError。
 // ============================================================
 
