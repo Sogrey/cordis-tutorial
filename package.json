@@ -4,6 +4,9 @@
   "description": "Cordis 零基础入门学习程序 — 9 步渐进式实践",
   "scripts": {
     "start": "node run.mjs",
+    "switch:harness": "node switch-deps.mjs harness",
+    "switch:npm": "node switch-deps.mjs npm",
+    "switch:status": "node switch-deps.mjs status",
     "step01": "cd steps/01-hello && node --import tsx ../../../../vendor/cordis/bin.js",
     "step02": "cd steps/02-lifecycle && node --import tsx ../../../../vendor/cordis/bin.js",
     "step03": "cd steps/03-service && node --import tsx ../../../../vendor/cordis/bin.js",
@@ -15,5 +18,11 @@
     "step09": "cd steps/09-harness-tool && node --import tsx ../../../../vendor/cordis/bin.js",
     "all": "node run.mjs all"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@cordisjs/plugin-include": "^1.0.4",
+    "@cordisjs/plugin-loader": "^1.0.0-rc.5",
+    "cordis": "^4.0.0-rc.8",
+    "schemastery": "^3.18.0"
+  }
 }

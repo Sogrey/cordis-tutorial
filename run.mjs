@@ -18,7 +18,7 @@ import { existsSync, readdirSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
-// run.mjs 在 tmp/cordis-tutorial/ 下，harness 根目录要上跳两层
+// [harness-mode]
 const harnessRoot = resolve(__dirname, '..', '..')
 const binPath = join(harnessRoot, 'vendor', 'cordis', 'bin.js')
 

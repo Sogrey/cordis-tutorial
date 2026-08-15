@@ -1,17 +1,57 @@
+---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: 'fa6e63d7-6ec5-40a7-ba08-28fc58378160'
+  PropagateID: 'fa6e63d7-6ec5-40a7-ba08-28fc58378160'
+  ReservedCode1: 'de9083ea-defb-48c4-8c17-f3563b33e537'
+  ReservedCode2: 'de9083ea-defb-48c4-8c17-f3563b33e537'
+---
+
 # Cordis 入门学习程序
 
 9 步渐进式实践，从零掌握 Cordis 插件框架的核心概念。
 
+## 双轨制：Harness 模式与 npm 模式
+
+本教程支持两种依赖源，默认使用 **Harness 模式**，可通过脚本一键切换：
+
+| 模式 | 依赖来源 | 适用场景 | Node 版本 |
+|------|---------|---------|----------|
+| **harness**（默认） | DeepSeek Harness 仓库 vendor 包 | 与 Harness 同步开发、深度集成 | >= 22 |
+| **npm**（备选） | npm registry 上游 `cordis` 包 | 独立学习、无需 Harness 仓库 | >= 18 |
+
+```bash
+# 查看当前模式
+npm run switch:status
+
+# 切换到 Harness 模式（默认）
+npm run switch:harness
+
+# 切换到 npm 独立模式
+npm run switch:npm
+```
+
+切换脚本（`switch-deps.mjs`）会自动处理：
+1. 所有 `.ts` 文件的 import 路径（`@deepseek-ai/cordis` ↔ `cordis` 等）
+2. `package.json` 中 step01~09 的脚本路径（`vendor/cordis/bin.js` ↔ `node_modules/cordis/bin.js`）
+3. `run.mjs` 中的启动器解析逻辑和错误提示
+
+所有替换均可逆，反复切换不丢失信息。
+
 ## 快速开始
 
-### 前置条件
+### 方式一：Harness 模式（默认）
+
+#### 前置条件
 
 - Node.js >= 22（Harness 仓库要求 `^22.19.0 || >=24.0.0`）
 - pnpm >= 11
 - 已克隆 DeepSeek Harness 仓库并完成 `pnpm install`
 - 已完成 vendor 包构建和 node_modules 链接（详见「环境配置说明」）
 
-### 安装
+#### 安装
 
 将本教程目录复制到 Harness 仓库内：
 
@@ -22,6 +62,25 @@ cd ~/deepseek-harness/tmp/cordis-tutorial
 ```
 
 教程依赖 Harness 仓库内的 `vendor/cordis/bin.js` 启动器和 `@deepseek-ai/cordis` 包，无需额外安装任何依赖。
+
+### 方式二：npm 独立模式
+
+#### 前置条件
+
+- Node.js >= 18
+
+#### 安装
+
+```bash
+cd cordis-tutorial
+
+# 切换到 npm 模式（自动安装依赖）
+npm run switch:npm
+```
+
+切换脚本会自动完成：替换 import 路径 + 更新脚本配置 + 安装 npm 依赖（`cordis`、`@cordisjs/plugin-loader`、`@cordisjs/plugin-include`、`schemastery`）。
+
+> **注意**：上游 npm `cordis` 版本为 `4.0.0-rc.x`，与 Harness vendor 版本可能有细微差异。核心 API 一致，入门教程步骤兼容。
 
 ### 运行
 
@@ -38,7 +97,7 @@ npm run step01
 npm run all
 ```
 
-也可以手动进入步骤目录运行（与官方教程完全一致）：
+Harness 模式下也可以手动进入步骤目录运行（与官方教程完全一致）：
 
 ```bash
 cd steps/01-hello
@@ -149,14 +208,15 @@ deepseek-harness/              ← Harness 仓库根
 
 ## 包名说明
 
-本教程在 Harness 仓库内运行，所有 import 路径使用 vendor 后的包名：
+本教程默认使用 Harness 模式，所有 import 路径使用 vendor 后的包名。切换到 npm 模式后，import 路径自动替换为上游包名：
 
-| 包 | import 路径 | 说明 |
-|----|-----------|------|
-| Cordis | `@deepseek-ai/cordis` | Harness vendor 后的 rescope 包名 |
-| Schemastery | `@deepseek-ai/schemastery` | 配置验证库 |
+| 包 | Harness 模式 | npm 模式 |
+|----|------------|---------|
+| Cordis | `@deepseek-ai/cordis` | `cordis` |
+| Schemastery | `@deepseek-ai/schemastery` | `schemastery` |
+| Cordis 插件 | `@deepseek-ai/cordis-plugin-*` | `@cordisjs/plugin-*` |
 
-如果在独立 Cordis / Koishi 项目中使用，将 `@deepseek-ai/cordis` 替换为 `cordis` 即可，API 完全一致。
+两种包名的 API 完全一致，切换不会影响功能。
 
 ## 环境配置说明
 
@@ -217,3 +277,5 @@ cmd /c mklink /J node_modules\@deepseek-ai\cordis-plugin-logger-console vendor\l
 - [Cordis 教程（7 章原文）](https://deepseek-harness.github.io/deepseek-harness/develop/cordis-tutorial/)
 - [Koishi 官网](https://koishi.chat/zh-CN/)
 - [DeepSeek Harness GitHub](https://github.com/deepseek-ai/deepseek-harness)
+
+> AI生成
