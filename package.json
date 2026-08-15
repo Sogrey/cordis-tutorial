@@ -1,0 +1,19 @@
+{
+  "name": "cordis-tutorial",
+  "version": "1.0.0",
+  "description": "Cordis 零基础入门学习程序 — 9 步渐进式实践",
+  "scripts": {
+    "start": "node run.mjs",
+    "step01": "cd steps/01-hello && node --import tsx ../../../../vendor/cordis/bin.js",
+    "step02": "cd steps/02-lifecycle && node --import tsx ../../../../vendor/cordis/bin.js",
+    "step03": "cd steps/03-service && node --import tsx ../../../../vendor/cordis/bin.js",
+    "step04": "cd steps/04-events && node --import tsx ../../../../vendor/cordis/bin.js",
+    "step05": "cd steps/05-waterfall && node --import tsx ../../../../vendor/cordis/bin.js",
+    "step06": "cd steps/06-config && node --import tsx ../../../../vendor/cordis/bin.js",
+    "step07": "cd steps/07-hmr && node --import tsx ../../../../vendor/cordis/bin.js",
+    "step08": "cd steps/08-diagnose && node --import tsx ../../../../vendor/cordis/bin.js",
+    "step09": "cd steps/09-harness-tool && node --import tsx ../../../../vendor/cordis/bin.js",
+    "all": "node run.mjs all"
+  },
+  "license": "MIT"
+}
